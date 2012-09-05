@@ -35,7 +35,7 @@
 #include <linux/spi/spi_aic3254.h>
 #include <mach/qdsp6v2_1x/q6afe.h>
 #include "audio_acdb.h"
-#ifdef CONFIG_MACH_VILLEC2
+#if defined(CONFIG_MACH_VILLEC2) || defined(CONFIG_MACH_SHOOTER_U)
 #include <linux/delay.h>
 #include <linux/mfd/timpani-audio.h>
 #endif
@@ -398,7 +398,7 @@ static int snddev_icodec_open_rx(struct snddev_icodec_state *icodec)
 	if (trc < 0)
 		pr_aud_err("%s: afe open failed, trc = %d\n", __func__, trc);
 
-#ifdef CONFIG_MACH_VILLEC2
+#if defined(CONFIG_MACH_VILLEC2) || defined(CONFIG_MACH_SHOOTER_U)
 	if (!strcmp(icodec->data->name, "fmradio_headset_rx")) {
 		pr_aud_err("[AUD] %s(), mute fm\n", __func__);
 		adie_codec_write_reg(TIMPANI_A_PA_HPH_EARPA_MSTB_EN, 0xFF, 0x04);
@@ -420,7 +420,7 @@ static int snddev_icodec_open_rx(struct snddev_icodec_state *icodec)
 			adie_codec_set_master_mode(icodec->adie_path, 0);
 	}
 
-#ifdef CONFIG_MACH_VILLEC2
+#if defined(CONFIG_MACH_VILLEC2) || defined(CONFIG_MACH_SHOOTER_U)
 	if (!strcmp(icodec->data->name, "fmradio_headset_rx")) {
 		pr_aud_err("[AUD] %s(), unmute fm\n", __func__);
 		adie_codec_write_reg(TIMPANI_A_PA_HPH_EARPA_MSTB_EN, 0xFF, 0x55);

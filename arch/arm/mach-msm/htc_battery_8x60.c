@@ -214,7 +214,7 @@ static int batt_set_voltage_alarm_mode(int mode1)
 		mode != BATT_ALARM_DISABLE_MODE)
 		BATT_ERR("%s:Warning:set mode to %d from non-disable mode(%d)",
 			__func__, mode, battery_vol_alarm_mode); */
-#ifdef CONFIG_MACH_VILLEC2
+#if defined(CONFIG_MACH_VILLEC2) || defined(CONFIG_MACH_SHOOTER_U)
 	if(mode1 == BATT_ALARM_NORMAL_MODE)
 		mode = BATT_ALARM_CRITICAL_MODE;
 	else
@@ -268,7 +268,7 @@ static int battery_alarm_notifier_func(struct notifier_block *nfb,
 			htc_batt_timer.batt_critical_alarm_counter + 1);
 		if (++htc_batt_timer.batt_critical_alarm_counter >= 3) {
 			BATT_LOG("%s: 3V voltage alarm is triggered.", __func__);
-#ifdef CONFIG_MACH_VILLEC2
+#if defined(CONFIG_MACH_VILLEC2) || defined(CONFIG_MACH_SHOOTER_U)
 			htc_batt_info.rep.level = 0;
 #else
 			htc_batt_info.rep.level = 1;
@@ -736,7 +736,7 @@ static long htc_batt_ioctl(struct file *filp,
 		}
 		mutex_unlock(&htc_batt_info.info_lock);
 
-#ifdef CONFIG_MACH_VILLEC2
+#if defined(CONFIG_MACH_VILLEC2) || defined(CONFIG_MACH_SHOOTER_U)
 	if(htc_batt_info.rep.batt_id == 3)
 		tps_set_hv_battery(1);
 	else

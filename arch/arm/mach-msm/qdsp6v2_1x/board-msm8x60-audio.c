@@ -43,7 +43,7 @@
 #ifdef CONFIG_MACH_VIGOR
 #include "timpani_profile_8x60_vigor.h"
 #else
-	#ifdef CONFIG_MACH_VILLEC2
+	#if defined(CONFIG_MACH_VILLEC2) || defined(CONFIG_MACH_SHOOTER_U)
 		#include "timpani_profile_8x60_villec2.h"
 	#else
 		#include "timpani_profile_8x60_lead.h"
@@ -1732,7 +1732,7 @@ static struct platform_device msm_ihs_mono_speaker_mono_rx_device = {
 	.dev = { .platform_data = &snddev_ihs_mono_speaker_mono_rx_data },
 };
 
-#ifdef CONFIG_MACH_VILLEC2
+#if defined(CONFIG_MACH_VILLEC2) || defined(CONFIG_MACH_SHOOTER_U)
 static struct adie_codec_action_unit
 	fm_ihs_mono_tx_48KHz_osr256_actions[] =
 	FM_HEADSET_MONO_TX_48000_OSR_256;
@@ -2027,7 +2027,7 @@ static struct platform_device *snd_devices_surf[] __initdata = {
 	&msm_emic_note_device,
 	&msm_headset_note_device,
 	&msm_ihs_mono_speaker_mono_rx_device,
-#ifdef CONFIG_MACH_VILLEC2
+#if defined(CONFIG_MACH_VILLEC2) || defined(CONFIG_MACH_SHOOTER_U)
 	&msm_fm_ihs_mono_tx_device,
 	&msm_beats_headset_stereo_device,
 	&msm_beats_headset_mic_device,
