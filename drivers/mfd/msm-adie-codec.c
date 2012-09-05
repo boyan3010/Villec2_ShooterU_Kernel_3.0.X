@@ -266,7 +266,7 @@ int adie_codec_set_master_mode(struct adie_codec_path *path_ptr, u8 master)
 }
 EXPORT_SYMBOL(adie_codec_set_master_mode);
 
-#ifdef CONFIG_MACH_VILLEC2
+#if defined(CONFIG_MACH_VILLEC2) || defined(CONFIG_MACH_SHOOTER_U)
 int adie_codec_write_reg(u8 reg, u8 mask, u8 val)
 {
 	int rc = -EPERM;

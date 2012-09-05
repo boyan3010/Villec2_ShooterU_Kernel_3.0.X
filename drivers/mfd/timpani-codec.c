@@ -3440,7 +3440,7 @@ static const struct adie_codec_operations timpani_adie_ops = {
 	.codec_enable_anc = timpani_adie_codec_enable_anc,
 	.codec_set_device_digital_volume =
 		timpani_adie_codec_set_device_digital_volume,
-#ifdef CONFIG_MACH_VILLEC2
+#if defined(CONFIG_MACH_VILLEC2) || defined(CONFIG_MACH_SHOOTER_U)
 	.codec_write = adie_codec_write,
 #endif
 };
