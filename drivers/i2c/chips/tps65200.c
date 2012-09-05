@@ -60,7 +60,7 @@ static struct delayed_work kick_dog;
 static struct alarm tps65200_check_alarm;
 static struct work_struct check_alarm_work;
 
-#ifdef CONFIG_MACH_VILLEC2
+#if defined(CONFIG_MACH_VILLEC2) || defined(CONFIG_MACH_SHOOTER_U)
 static int tps_last_charge;
 static int tps_last_temp_vreg;
 #endif
@@ -380,7 +380,7 @@ EXPORT_SYMBOL(tps65200_mask_interrupt_register);
 
 int tps_set_hv_battery(int hv)
 {
-#ifdef CONFIG_MACH_VILLEC2
+#if defined(CONFIG_MACH_VILLEC2) || defined(CONFIG_MACH_SHOOTER_U)
 	if(htc_is_dq_pass != hv)
 	{
 		pr_tps_info("%s reset dq to %d\n", __func__, hv);
@@ -419,7 +419,7 @@ int tps_set_charger_ctrl(u32 ctl)
 	if (tps65200_initial < 0)
 		return 0;
 
-#ifdef CONFIG_MACH_VILLEC2
+#if defined(CONFIG_MACH_VILLEC2) || defined(CONFIG_MACH_SHOOTER_U)
 	if(ctl < POWER_SUPPLY_ENABLE_INTERNAL)
 		tps_last_charge = ctl;
 
