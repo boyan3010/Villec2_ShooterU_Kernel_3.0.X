@@ -125,7 +125,7 @@ struct adie_codec_operations {
 						u32 volume);
 	int (*codec_set_master_mode) (struct adie_codec_path *path_ptr,
 					u8 master);
-#ifdef CONFIG_MACH_VILLEC2
+#if defined(CONFIG_MACH_VILLEC2) || defined(CONFIG_MACH_SHOOTER_U)
 	int (*codec_write) (u8 reg, u8 mask, u8 val);
 #endif
 };
@@ -150,7 +150,7 @@ int adie_codec_set_device_analog_volume(struct adie_codec_path *path_ptr,
 		u32 num_channels, u32 volume /* in percentage */);
 
 int adie_codec_set_master_mode(struct adie_codec_path *path_ptr, u8 master);
-#ifdef CONFIG_MACH_VILLEC2
+#if defined(CONFIG_MACH_VILLEC2) || defined(CONFIG_MACH_SHOOTER_U)
 int adie_codec_write_reg(u8 reg, u8 mask, u8 val);
 #endif
 #endif
