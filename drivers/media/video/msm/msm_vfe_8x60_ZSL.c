@@ -3975,7 +3975,7 @@ static void vfe31_do_tasklet(unsigned long data)
 	CDBG("[CAM] === vfe31_do_tasklet end === \n");
 }
 
-DECLARE_TASKLET(vfe31_tasklet, vfe31_do_tasklet, 0);
+static DECLARE_TASKLET(vfe31_tasklet, vfe31_do_tasklet, 0);
 
 #ifdef BUS_RATE_DEBUG
 static void vfe31_do_workqueue(struct work_struct *work)
